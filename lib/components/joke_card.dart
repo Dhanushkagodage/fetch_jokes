@@ -14,7 +14,7 @@ class JokeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
         side: const BorderSide(
-          color: Colors.blueAccent,
+          color: Colors.green,
           width: 1,
         )
       ),

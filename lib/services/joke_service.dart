@@ -12,7 +12,7 @@ class JokeService {
     try {
       // Pass the selected joke category to the API request
       final response = await _dio.get(
-        '${AppConstants.jokeApiUrl}/$category?amount=10', // Appending the category parameter to the API URL
+        '${AppConstants.jokeApiUrl}/$category?amount=5', // Appending the category parameter to the API URL
       );
 
       // Check if the 'jokes' key is present in the response
