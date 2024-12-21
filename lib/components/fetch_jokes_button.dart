@@ -21,7 +21,7 @@ class FetchJokesButton extends StatelessWidget {
                   ? Colors.white
                   : Colors.blueAccent, // Button color changes when loading
               padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 60),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -39,7 +39,7 @@ class FetchJokesButton extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
-                        Icons.local_play, // Replace with any desired icon
+                        Icons.mood, // Replace with any desired icon
                         color: Colors.white,
                         size: 24,
                       ),

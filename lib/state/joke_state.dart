@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:fetch_jokes/components/no_internet_popup.dart';
 import 'package:flutter/material.dart';
 import 'package:fetch_jokes/data/dto/joke_dto.dart';
@@ -10,16 +12,10 @@ class JokeState extends ChangeNotifier {
   List<JokeDto> jokes = [];
   bool isLoading = false;
   String selectedCategory =
-      'Programming'; // Default category set to 'Programming'
-  double sizeRatio = 1;
+      'any'; 
+  
 
-  // Method to update the selected joke category
-  void updateSelectedCategory(String? newCategory) {
-    if (newCategory != null) {
-      selectedCategory = newCategory;
-      notifyListeners();
-    }
-  }
+  
 
   // Fetch jokes from the service based on the selected category or use cache
   Future<void> fetchJokes(BuildContext context) async {
@@ -40,9 +36,7 @@ class JokeState extends ChangeNotifier {
       NoInternetPopup.show(context);
     }
 
-    if (jokes.isNotEmpty) {
-      sizeRatio = 0.5;
-    }
+    
 
     isLoading = false;
     notifyListeners();
@@ -50,6 +44,6 @@ class JokeState extends ChangeNotifier {
 
   // Placeholder method to check internet connection
   Future<bool> _isConnected() async {
-    return await InternetConnectionChecker().hasConnection;
+    return await InternetConnectionChecker.createInstance().hasConnection;
   }
 }

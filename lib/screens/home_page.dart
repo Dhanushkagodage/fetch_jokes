@@ -1,9 +1,10 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../state/joke_state.dart';
 import '../components/fetch_jokes_button.dart';
 import '../components/joke_card.dart';
-import '../components/joke_category_dropdown.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -42,99 +43,109 @@ class _HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-      body: Column(
-        children: [
-          // Top background image
-          Container(
-            width: double.infinity,
-            height: 400 * jokeState.sizeRatio,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/laughing_group.jpg'),
-                fit: BoxFit.cover,
-                opacity: 0.9,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          backgroundColor: Color(0xFFaaff03),
+          title: Text(
+            'Fetch-Jokes',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'LobsterTwo-Bold',
+              color: Colors.black,
+            ),
+          ),
+          centerTitle: true,
+          elevation: 0, // Remove shadow
+          automaticallyImplyLeading: false),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              "Welcome to The Fetch Jokes!",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Lato-Regular',
+                color: Colors.black,
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            // Top background image
+            Container(
+              width: double.infinity,
+              height: 220,
+              decoration: const BoxDecoration(
+                
+                image: DecorationImage(
+                  image: AssetImage('assets/images/emoji.png'),
+                  fit: BoxFit.contain,
+                  opacity: 0.9,
+                ),
+              ),
               child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Fetch-Jokes',
-                  style: TextStyle(
-                    fontSize: 60 * jokeState.sizeRatio,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'LobsterTwo-Bold',
-                    color: Colors.white,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black.withOpacity(0.5),
-                        offset: const Offset(6, 3),
-                        blurRadius: 6,
+                alignment: Alignment.bottomCenter,
+                child: FetchJokesButton(jokeState: jokeState),
+              ),
+            ),
+
+            // FetchJokesButton(jokeState: jokeState),
+
+            const SizedBox(height: 20),
+
+            if (!jokeState.isLoading && jokeState.jokes.isEmpty)
+              Expanded(
+                // Use Expanded to fill the remaining space
+                child: Center(
+                  // Center vertically within the Expanded area
+                  child: Column(
+                    mainAxisSize:
+                        MainAxisSize.min, // Center contents vertically
+                    children: [
+                      Icon(
+                        Icons.sentiment_dissatisfied_outlined,
+                        size: 70,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "No jokes fetched yet!",
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontFamily: 'Lato-Italic',
+                          color: Colors.black87,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
-            ),
-          ),
 
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text(
-              "Select the category",
-              style: TextStyle(
-                fontFamily: 'LobsterTwo-italic',
-                color: Colors.black87,
-                fontSize: 16,
-              ),
-            ),
-          ),
-          // Joke Category Dropdown
-          JokeCategoryDropdown(jokeState: jokeState),
-
-          // Fetch jokes button
-          FetchJokesButton(jokeState: jokeState),
-
-          const SizedBox(height: 20),
-
-          // // Show loading spinner while jokes are loading
-          // if (jokeState.isLoading)
-          //   const Center(
-          //     child: CircularProgressIndicator(),
-          //   ),
-
-          // If no jokes fetched
-          if (!jokeState.isLoading && jokeState.jokes.isEmpty)
-            const Center(
-              child: Text(
-                "No jokes fetched yet!",
-                style:
-                    TextStyle(fontFamily: 'Lato-Italic', color: Colors.black87),
-              ),
-            ),
-
-          // List of jokes or pull-to-refresh area
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async {
-                jokeState.fetchJokes(context);
-              },
-              child: Scrollbar(
-                thumbVisibility: true, // Ensure the scrollbar is always visible
-                controller: _scrollController, // Use the same ScrollController
-                child: ListView.builder(
-                  controller: _scrollController, // Assign the ScrollController
-                  itemCount: jokeState.jokes.length,
-                  itemBuilder: (context, index) {
-                    return JokeCard(joke: jokeState.jokes[index]);
-                  },
-                  padding: const EdgeInsets.symmetric(vertical: 0.0),
+            // List of jokes or pull-to-refresh area
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  jokeState.fetchJokes(context);
+                },
+                child: Scrollbar(
+                  thumbVisibility:
+                      true, // Ensure the scrollbar is always visible
+                  controller:
+                      _scrollController, // Use the same ScrollController
+                  child: ListView.builder(
+                    controller:
+                        _scrollController, // Assign the ScrollController
+                    itemCount: jokeState.jokes.length,
+                    itemBuilder: (context, index) {
+                      return JokeCard(joke: jokeState.jokes[index]);
+                    },
+                    padding: const EdgeInsets.symmetric(vertical: 0.0),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -13,7 +13,8 @@ class JokeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
       ),
-      color: Colors.white,
+      //color: const Color.fromARGB(255, 189, 255, 195),
+      color: Color.fromARGB(255, 241, 255, 212),
       shadowColor: Colors.black.withOpacity(0.3), // Shadow effect
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,12 +56,11 @@ class JokeCard extends StatelessWidget {
                         ? joke.joke!
                         : '${joke.setup}\n\n- ${joke.delivery}',
                     style: const TextStyle(
-                      fontSize: 16,
+                      fontSize: 15,
                       color: Colors.black87,
-                      height: 1.5,
                       fontFamily: 'Lato-Regular',
                     ),
-                    textAlign: TextAlign.justify,
+                   // textAlign: TextAlign.justify,
                     maxLines:
                         6, // Limiting the number of lines to keep the layout neat
                     overflow: TextOverflow

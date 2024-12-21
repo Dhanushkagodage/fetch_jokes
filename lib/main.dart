@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: AnimatedSplash(
         type: Transition.scale, // Transition effect
-        durationInSeconds: 3, // Splash screen duration
+        durationInSeconds: 4, // Splash screen duration
         navigator: const HomePage(), // Proper navigation
         curve: Curves.easeInOut, // Animation curve
         backgroundColor: Colors.white, // Splash screen background color
@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/laughing_image.jpg', // Path to your joke-related icon
-              width: 160,
-              height: 160,
+              'assets/images/funnyIcon.png', // Path to your joke-related icon
+              width: 260,
+              height: 260,
             ),
             const SizedBox(height: 20),
             const Text(
