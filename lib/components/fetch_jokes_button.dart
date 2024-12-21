@@ -19,7 +19,7 @@ class FetchJokesButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: jokeState.isLoading
                   ? Colors.white
-                  : Colors.blueAccent, // Button color changes when loading
+                  : Color(0xFFaaff03), // Button color changes when loading
               padding:
                   const EdgeInsets.symmetric(vertical: 12.0, horizontal: 60),
               shape: RoundedRectangleBorder(
@@ -40,7 +40,7 @@ class FetchJokesButton extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.mood, // Replace with any desired icon
-                        color: Colors.white,
+                        color: Colors.black,
                         size: 24,
                       ),
                       SizedBox(width: 8), // Space between icon and text
@@ -48,7 +48,7 @@ class FetchJokesButton extends StatelessWidget {
                         "Fetch Jokes",
                         style: TextStyle(
                           fontFamily: 'Lato-Italic',
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 18,
                         ),
                       ),
