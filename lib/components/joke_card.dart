@@ -10,8 +10,13 @@ class JokeCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
       elevation: 10,
+
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
+        side: const BorderSide(
+          color: Colors.blueAccent,
+          width: 1,
+        )
       ),
       //color: const Color.fromARGB(255, 189, 255, 195),
       color: Color.fromARGB(255, 241, 255, 212),
@@ -25,12 +30,12 @@ class JokeCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12.0),
               decoration: BoxDecoration(
-                color: Colors.blueAccent.withOpacity(0.15),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: const Icon(
                 Icons.mood, // Fun, playful icon
-                color: Colors.green,
+                color: Color(0xFFaaff03),
                 size: 45,
               ),
             ),
